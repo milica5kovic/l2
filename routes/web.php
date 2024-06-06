@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,10 +18,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/students/{page?}', function(){
-    return view('student.page');
+// Route::get('/students/{page?}', function(){
+//     return view('student.page');
     
-});
+// });
+Route::get('/students/{page?}', [StudentController::class, 'page'])->name('/students/{page?}');
 
 // U routes/web.php napravite rute za te metode
 // /students/{page?}   	ruta sa opcionim parametrom page, koja gađa metod page()
