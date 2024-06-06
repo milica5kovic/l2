@@ -1,5 +1,6 @@
 <?php
 
+// svaki use i import treba da ima veliko slovo za naziv foldera
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -13,22 +14,22 @@ Route::get('/user', function (Request $request) {
 Route::get('/students', [StudentController::class, 'apiStudents']);
 
 
-Route::get('/students/{page}', function ($page, Request $request){
-   
+Route::get('/students/{page}', function ($page, Request $request) {
+
     $studenti_json = file_get_contents("http://alumni.raf.edu.rs/rs/api/list");
     $studenti = json_decode($studenti_json);
-    
-    $start = ($page-1)*10;
+
+    $start = ($page - 1) * 10;
     $students = array_slice($studenti, $start, 10);
-    
+
     return $students;
-    
+
     // Definišemo rutu /api/students/searchquery
     // U api.php ubacite rutu students/{searchquery}
     // U handler funkciju umetnite prvi parametar $q
     // U handleru rute dohvatite sa alumni API-ja alumni.raf.edu.rs/rs/api/find/$q
     // Dekodujte JSON podatke i vratite prvih 5 rezultata
-        
+
 });
 //Nema smisla opet ista funkcija al ajd to je jbn PPP
 
@@ -50,15 +51,9 @@ Route::get('/students/{page}', function ($page, Request $request){
 // Dekodujte JSON podatke i vratite objekat
 // Testirajte sa id-em 5563, na primer. Pogledajte u /api/students sta sve daje od id-eva
 
-Route::get('/student/{id}', function ($id, Request $request){
-   $student_json = file_get_contents("http://alumni.raf.edu.rs/rs/api/diplomac/$id");
-   $student = json_decode($student_json);
-   
-   return $student;
-    
+Route::get('/student/{id}', function ($id, Request $request) {
+    $student_json = file_get_contents("http://alumni.raf.edu.rs/rs/api/diplomac/$id");
+    $student = json_decode($student_json);
+
+    return $student;
 });
-
-
-    
-    
-
