@@ -17,4 +17,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/students/{page?}', function(){
+    return view('student.page');
+    
+});
+
+// U routes/web.php napravite rute za te metode
+// /students/{page?}   	ruta sa opcionim parametrom page, koja gađa metod page()
+// /students/search/{search}	ruta koja gađa metod search()
+// /student/{id}			ruta koja gađa metod student()
+// Napunite metode kodom koji radi to što treba da radi, i ispisuje JSON sadržaj
 require __DIR__.'/auth.php';
