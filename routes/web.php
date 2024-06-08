@@ -24,6 +24,10 @@ Route::middleware('auth')->group(function () {
 // });
 Route::get('/students/{page?}', [StudentController::class, 'page'])->name('/students/{page?}');
 
+Route::get('/students/{search}', [StudentController::class, 'search'])->name('/students/{search}');
+
+Route::get('/student/{id}', [StudentController::class, 'student'])->name('/student/{id}');
+
 // U routes/web.php napravite rute za te metode
 // /students/{page?}   	ruta sa opcionim parametrom page, koja gađa metod page()
 // /students/search/{search}	ruta koja gađa metod search()

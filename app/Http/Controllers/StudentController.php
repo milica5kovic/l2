@@ -10,16 +10,27 @@ class StudentController extends Controller
         $studenti_json = file_get_contents("http://alumni.raf.edu.rs/rs/api/list");
         $studenti = json_decode($studenti_json);
         
-        $start = ($page-1)*10;
-        $students = array_slice($studenti, $start, 10);
+        $start = ($page-1)*5;
+        $students = array_slice($studenti, $start, 5);
         
         return $students;
         
     }
     public function search($search){
+        $studenti_json = file_get_contents("http://alumni.raf.edu.rs/rs/api/list");
+        $studenti = json_decode($studenti_json);
+        
+       
+        $studenti = array_slice($studenti, 0, 5);
+        
+        return $studenti;
         
     }
     public function student($id){
+        $studenti_json = file_get_contents("http://alumni.raf.edu.rs/rs/api/diplomac/$id");
+        $student = json_decode($studenti_json);
+        
+        return view('student', ['student' => $student]);
         
     }
     
